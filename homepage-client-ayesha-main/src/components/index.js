@@ -1,0 +1,13 @@
+export { default as Header } from './Header'
+export { default as Footer } from './Footer'
+export { default as BannerSlider } from './homePageComponents/BannerSlider'
+export { default as About } from './homePageComponents/About'
+export { default as Blogs } from './homePageComponents/Blogs'
+export { default as Features } from './homePageComponents/Features'
+export { default as Cuisines } from './homePageComponents/Cuisines'
+export { default as SignatureFoods } from './homePageComponents/SignatureFoods'
+export { default as BestOffersSlider } from './homePageComponents/BestOffersSlider'
+export { default as ExploreFood } from './homePageComponents/ExploreFood'
+export { default as OtherFeatures } from './homePageComponents/OtherFeatures'
+export { default as Gallery } from './homePageComponents/Gallery'
+
