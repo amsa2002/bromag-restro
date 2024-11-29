@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import './Style.css'
 import signup_logo from '../assets/images/bromag_india_FINAL_BGLESS-01 1.png'
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL
+
 export function Login() {
     const navigate = useNavigate()
     const [number, setNumber] = useState('')
@@ -12,7 +14,7 @@ export function Login() {
 
     const sendOTP = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:6003/send-otp', { number })
+        axios.post(`${backendUrl}/send-otp`, { number })
             .then(() => {
                 setIsOTPSent(true);
                 console.log('OTP sent successfully');
@@ -22,7 +24,7 @@ export function Login() {
 
     const verifyOTP = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:6003/verify-otp', { number, otp })
+        axios.post(`${backendUrl}/verify-otp`, { number, otp })
             .then((response) => {
                 alert(response.data.message);
                 if(response.data.success){

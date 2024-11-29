@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import './Style.css'
 import signup_logo from '../assets/images/bromag_india_FINAL_BGLESS-01 1.png'
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+console.log("Backend URL:", backendUrl);
+
+
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -14,7 +19,7 @@ function SignUp() {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('http://localhost:6003/register', {name, email, number})
+        axios.post(`${backendUrl}/register`, {name, email, number})
         .then(result=>{console.log(result)
             navigate('/login')
         })
