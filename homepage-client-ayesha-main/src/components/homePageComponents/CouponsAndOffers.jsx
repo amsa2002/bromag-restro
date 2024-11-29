@@ -5,9 +5,12 @@ import styled from "styled-components"
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 import line from '../../assets/images/gold-line.svg'
-import offer1 from '../../assets/images/CouponsAndOffersimages/offer1.png'
-import offer2 from '../../assets/images/CouponsAndOffersimages/offer2.png'
-import offer3 from '../../assets/images/CouponsAndOffersimages/offer3.png'
+// import offer1 from '../../assets/images/CouponsAndOffersimages/offer1.png'
+// import offer2 from '../../assets/images/CouponsAndOffersimages/offer2.png'
+// import offer3 from '../../assets/images/CouponsAndOffersimages/offer3.png'
+import offer1 from '../../assets/images/couponsAndOffersImages/offer1.png'
+import offer2 from '../../assets/images/couponsAndOffersImages/offer1.png'
+import offer3 from '../../assets/images/couponsAndOffersImages/offer1.png'
 
 // swiper imports
 // Import Swiper React components
