@@ -13,7 +13,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 
 
 const Wrapper = styled.div`
@@ -134,8 +134,21 @@ const Blogs = () => {
                         prevEl: '.swiper-button-prev',
                         clickable: true,
                     }}
-                    modules={[Navigation]}
+                    coverflowEffect={{
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 3,
+                        slideShadows: false,
+                    }}
+                    autoplay={{
+                        delay: 1500,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={true}
+                    modules={[Navigation, Autoplay, EffectCoverflow]}
                     className="blogs-swiper"
+                    // className="mySwiper"
                 >
 
 
