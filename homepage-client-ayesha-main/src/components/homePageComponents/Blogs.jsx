@@ -132,23 +132,22 @@ const Blogs = () => {
                     navigation={{
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
-                        clickable: true,
                     }}
-                    coverflowEffect={{
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 3,
-                        slideShadows: false,
-                    }}
+                    // coverflowEffect={{
+                    //     rotate: 0,
+                    //     stretch: 0,
+                    //     depth: 100,
+                    //     modifier: 3,
+                    //     slideShadows: false,
+                    // }}
                     autoplay={{
                         delay: 1500,
                         disableOnInteraction: false,
                     }}
-                    pagination={true}
+                    pagination={{clickable: true}}
                     modules={[Navigation, Autoplay, EffectCoverflow]}
-                    className="blogs-swiper"
-                    // className="mySwiper"
+                    // className="blogs-swiper"
+                    className="mySwiper"
                 >
 
 
