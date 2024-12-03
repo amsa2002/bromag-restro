@@ -9,7 +9,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL
 export function Login() {
     const navigate = useNavigate()
     const [number, setNumber] = useState('')
-    const [otp, setOtp] = useState(['', '', '', '', '', '']);
+    const [otp, setOtp] = useState(['', '', '', '']);
     const [isOTPSent, setIsOTPSent] = useState(false)
     const [countdown, setCountdown] = useState(30); // 30 seconds timer
     const [canResend, setCanResend] = useState(false);
