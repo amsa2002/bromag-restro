@@ -15,12 +15,12 @@ const Footer = () => {
     return (
         <Wrapper>
             <div className="footer-title">
-                <h1>BR<img src={logo} alt="" />MAG RESTO</h1>
+                <h1>BR<Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><img src={logo} alt="" /></Link>MAG RESTO</h1>
                 <p>INTEGRATED FOOD ORDERING AND DELIVERY PLATFORM</p>
             </div>
 
             <div className="footer-content">
-                
+
             </div>
             
             {/* <Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>

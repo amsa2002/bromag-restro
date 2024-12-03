@@ -66,7 +66,7 @@ export function Login() {
             .then((response) => {
                 alert(response.data.message);
                 if(response.data.success){
-                    window.open('https://restro-gold.vercel.app/', '_blank')
+                    window.open('https://restro-gold.vercel.app/')
                 }
             })
             .catch((error) => console.error('Error verifying OTP:', error))
