@@ -7,19 +7,28 @@ import { GoMail } from "react-icons/go";
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
 
 //image import
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/footer-logo.png'
 import { Link } from "react-router-dom";
 
 const Footer = () => {
 
     return (
         <Wrapper>
-            <Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="footer-title">
+                <h1>BR<img src={logo} alt="" />MAG RESTO</h1>
+                <p>INTEGRATED FOOD ORDERING AND DELIVERY PLATFORM</p>
+            </div>
+
+            <div className="footer-content">
+                
+            </div>
+            
+            {/* <Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <div className="logo">
                     <img src={logo} alt="" />
                 </div>
-            </Link>
-            <div className="footer-parent-div">
+            </Link> */}
+            {/* <div className="footer-parent-div">
 
                 <div className="footer-left-div">
                     <h3>
@@ -73,7 +82,7 @@ const Footer = () => {
 
             <svg className="svg">
                 <clipPath id="clip" clipPathUnits="objectBoundingBox"><path d="M1,0.046 L0.981,0.064 C0.902,0.136,0.807,0.162,0.716,0.135 L0.31,0.015 C0.25,-0.003,0.188,-0.004,0.128,0.012 L0,0.046 V1 H1 V0.046"></path></clipPath>
-            </svg>
+            </svg> */}
         </Wrapper>
     )
 }
