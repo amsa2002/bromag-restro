@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'
 import './Style.css'
@@ -9,22 +9,60 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL
 export function Login() {
     const navigate = useNavigate()
     const [number, setNumber] = useState('')
-    const [otp, setOtp] = useState('');
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [isOTPSent, setIsOTPSent] = useState(false)
+    const [countdown, setCountdown] = useState(30); // 30 seconds timer
+    const [canResend, setCanResend] = useState(false);
+
+    useEffect(() => {
+        if (isOTPSent && countdown > 0) {
+            const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+            return () => clearTimeout(timer);
+        } else if (countdown === 0) {
+            setCanResend(true);
+        }
+    }, [countdown, isOTPSent]);
+
 
     const sendOTP = (e) => {
         e.preventDefault()
         axios.post(`${backendUrl}/send-otp`, { number })
             .then(() => {
                 setIsOTPSent(true);
+                // setCountdown(30); // Reset countdown
+                // setCanResend(false); // Disable resend button
                 console.log('OTP sent successfully');
             })
             .catch((error) => console.error('Error sending OTP:', error))
     };
 
+
+    const resendOTP = () => {
+        axios.post(`${backendUrl}/send-otp`, { number })
+            .then(() => {
+                setCountdown(30); // Reset countdown
+                setCanResend(false); // Disable resend button
+                console.log('OTP resent successfully');
+            })
+            .catch((error) => console.error('Error resending OTP:', error));
+    };
+
+    const handleOtpChange = (e, index) => {
+        const value = e.target.value;
+        const newOtp = [...otp];
+        newOtp[index] = value;
+        setOtp(newOtp);
+
+        // Move to the next input box automatically
+        if (value && index < otp.length - 1) {
+            document.getElementById(`otp-input-${index + 1}`).focus();
+        }
+    };
+
     const verifyOTP = (e) => {
         e.preventDefault()
-        axios.post(`${backendUrl}/verify-otp`, { number, otp })
+        const otpValue = otp.join('');
+        axios.post(`${backendUrl}/verify-otp`, { number, otp: otpValue })
             .then((response) => {
                 alert(response.data.message);
                 if(response.data.success){
@@ -45,11 +83,11 @@ export function Login() {
                 </div>
                 <div className='col-md-6'>
                     <div className="container mt-5">
-                        <div className=" signup-container">
-                        <h3 className="text-center mb-4">Welcome</h3>
-                        <p className="text-center mb-4">Please enter your phone number to continue</p>
+                        <div className=" signup-container">                        
                             {!isOTPSent ? (
                                 <div>
+                                    <h3 className="text-center mb-4">Login</h3>
+                                    <p className="text-center mb-4">Please enter your phone number to continue</p>
                                     <form>
                                         <div className="mb-3">
                                             <label for="number" className="form-label"><span>*</span> Phone number</label>
@@ -68,13 +106,33 @@ export function Login() {
                                 </div>
                             ) : (
                                 <div>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter OTP"
-                                        value={otp}
-                                        onChange={(e) => setOtp(e.target.value)}
-                                    />
-                                    <button onClick={verifyOTP}>Verify OTP</button>
+                                    <h3 className="text-center mb-4">OTP Verification</h3>
+                                    <p className="text-center mb-4">Enter the 4 digit OTP send to {number}</p>
+                                    <div className="otp-input-container">
+                                        {otp.map((digit, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                maxLength="1"
+                                                value={digit}
+                                                onChange={(e) => handleOtpChange(e, index)}
+                                                id={`otp-input-${index}`}
+                                                className="otp-input"
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className="resend-btn text-center  mt-3">
+                                        <p className="mb-1">You didn’t receive OTP? <span>{countdown > 0 ? `${countdown}s` : ''}</span>
+                                        </p>
+                                        <button
+                                            className="btn-secondary"
+                                            onClick={resendOTP}
+                                            disabled={!canResend}
+                                        >
+                                            Resend OTP
+                                        </button>
+                                    </div>
+                                    <div className='button'><button className='btn-primary' onClick={verifyOTP}>Verify & Proceed</button></div>
                                 </div>
                             )}
                         </div>

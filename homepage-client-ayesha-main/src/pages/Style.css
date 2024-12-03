@@ -3,6 +3,7 @@
     height: 100vh;
     /* background-color:#890E06 ; */
     background: radial-gradient(74.39% 74.39% at 50% 50%, #890E06 0%, #000000 100%);
+    padding: 20px;
 
 }
 .row-container{
@@ -27,7 +28,7 @@
 }
 
 .img-col img{
-    width: 447px;
+    width: 400px;
     vertical-align: middle !important;
 }
 .row {
@@ -41,7 +42,7 @@
     padding: 30px;
     width: 500px;
     border-radius: 25px;
-    min-height: 500px;
+    vertical-align: middle;
 }
 .signup-container h3{
     color:#FFFFFF;
@@ -73,6 +74,27 @@
 .signup-container form input::placeholder{
     color: #CDCDCD;
 }
+.signup-container form input:focus{
+    background: #FFFFFF33;
+    outline: none !important;
+    box-shadow: none !important;
+    
+}
+.signup-container form input:hover{
+    border: 0px;
+}
+.signup-container form input[type="number"] {
+    appearance: textfield; /* For most modern browsers */
+    -moz-appearance: textfield; /* For Firefox */
+    -webkit-appearance: textfield; /* For Safari and Chrome */
+}
+
+.signup-container form input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hides the spinner in Chrome and Safari */
+    margin: 0;
+}
+
 .btn-primary{
     background-color: #DF9300;
     color: #FFFFFF;
@@ -92,5 +114,36 @@
 p a{
     text-decoration: none;
     color: #DF9300;
+}
+
+.otp-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.otp-input {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;
+    outline: none;
+    background-color:#FFFFFF33;
+    border: none;
+    color: #FFFFFF;
+}
+
+.otp-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+ .btn-secondary{
+
+    background-color: transparent !important;
+    border: 0px;
+    color: rgb(165, 135, 235);
+    text-decoration: underline;
 }
 

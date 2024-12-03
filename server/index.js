@@ -28,7 +28,9 @@ database.on('disconnected', () => console.warn('⚠️ MongoDB disconnected'));
 
 const otpStorage = {};
 
-const generateOTP = () => Math.floor(100000 + Math.random() * 900000); // Simple 6-digit OTP generator
+const generateOTP = () => {
+    return Math.floor(1000 + Math.random() * 9000);
+};
 
 app.post('/send-otp', async (req, res) => {
     const { number } = req.body;
@@ -39,13 +41,13 @@ app.post('/send-otp', async (req, res) => {
 
     const otp = generateOTP();
     otpStorage[number] = otp;
-
+    console.log(`Generated OTP  for ${number}:${otp}`)
     // OTP expires in 5 minutes
     setTimeout(() => delete otpStorage[number], 300000);
 
     const payload = {
         number: [number],
-        message: `OTP TO LOGIN YOUR BROMAG INDIA ACCOUNT IS ${otp}. DON'T SHARE THIS OTP WITH ANYONE FOR SECURITY REASONS.`,
+        message: `OTP TO LOGIN YOUR BROMAG INDIA ACCOUNT IS ${otp}. DON'T SHARE THIS OTP WITH ANYONE FOR SECURITY PURPOSE.`,
         senderId: process.env.EDUMARC_SENDER_ID,
         templateId: process.env.EDUMARC_TEMPLATE_ID,
     };
@@ -101,12 +103,12 @@ app.post('/register', async (req,res) => {
         if (!phoneRegex.test(number.toString())) {
             return res.status(400).json({ message: 'Invalid phone number format. It must be 10 digits.' });
         }
-        
             const existingUser = await EmployeeModel.findOne({ email });
             if(existingUser){
          
                 return res.status(400).json({message: 'Email already exists'})
             }
+        
         
 
         const newUser = await EmployeeModel.create({name, email, number})
