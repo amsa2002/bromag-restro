@@ -28,9 +28,7 @@ database.on('disconnected', () => console.warn('⚠️ MongoDB disconnected'));
 
 const otpStorage = {};
 
-const generateOTP = () => {
-    return Math.floor(1000 + Math.random() * 9000);
-};
+const generateOTP = () => Math.floor(1000 + Math.random() * 9000);  // 4-digit OTP
 
 app.post('/send-otp', async (req, res) => {
     const { number } = req.body;
@@ -41,13 +39,13 @@ app.post('/send-otp', async (req, res) => {
 
     const otp = generateOTP();
     otpStorage[number] = otp;
-    console.log(`Generated OTP  for ${number}:${otp}`)
+
     // OTP expires in 5 minutes
     setTimeout(() => delete otpStorage[number], 300000);
 
     const payload = {
         number: [number],
-        message: `OTP TO LOGIN YOUR BROMAG INDIA ACCOUNT IS ${otp}. DON'T SHARE THIS OTP WITH ANYONE FOR SECURITY PURPOSE.`,
+        message: `OTP TO LOGIN YOUR BROMAG INDIA ACCOUNT IS ${otp}. DON'T SHARE THIS OTP WITH ANYONE FOR SECURITY REASONS.`,
         senderId: process.env.EDUMARC_SENDER_ID,
         templateId: process.env.EDUMARC_TEMPLATE_ID,
     };
