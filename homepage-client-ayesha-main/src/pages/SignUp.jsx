@@ -15,15 +15,20 @@ function SignUp() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [number, setNumber] = useState()
+    const [error, setError] = useState()
     const navigate = useNavigate()
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
-        axios.post(`${backendUrl}/register`, {name, email, number})
-        .then(result=>{console.log(result)
-            navigate('/login')
-        })
-        .catch(err=>console.log(err))
+        setError('')
+        try {
+         const response = axios.post(`${backendUrl}/register`, {name, email, number})
+          console.log(response.data)
+          navigate('/login')
+        } catch (err) {
+          setError(err.response?.data?.message || 'Registration failed');
+        }
+        
     }
 
   return (
@@ -40,6 +45,7 @@ function SignUp() {
                     <div className=" signup-container">
                       <h3 className="text-center mb-4">Welcome</h3>
                       <p className="text-center mb-4">"Please signup an your account."</p>
+                      {error && <div className="alert alert-danger">{error}</div>}
                       <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                           <label for="username" className="form-label"><span>*</span> Username</label>
