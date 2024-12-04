@@ -64,7 +64,7 @@ clip-path: url(#clip);
     justify-content: space-between;
     align-items: flex-start;
     padding: 40px 133px;
-    font-family:'Poppins;
+    font-family:'Poppins';
 }
 
 .footer-buttons {
