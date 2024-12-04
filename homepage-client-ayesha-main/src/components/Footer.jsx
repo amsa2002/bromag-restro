@@ -1,10 +1,7 @@
 import Wrapper from "../assets/wrappers/Footer"
 
-//icon imports
-import { LiaPhoneSolid } from "react-icons/lia";
-import { CiLocationOn } from "react-icons/ci";
-import { GoMail } from "react-icons/go";
-import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
+//import icons
+import { FaInstagram, FaWhatsapp,  FaYoutube, FaLinkedin   } from "react-icons/fa";
 
 //image import
 import logo from '../assets/images/footer-logo.png'
@@ -24,18 +21,25 @@ const Footer = () => {
 
             <div className="footer-content">
                 <div className="footer-buttons">
-                    <h3>About Us</h3>
                     <button>Who We Are</button>
-                    <button>What We Do</button>
-                    <button>TERMS & CONDITIONS </button>
+                    <button>TERMS & CONDITIONS</button>
+                    <button>What We Do </button>
                     <button>PRIVACY POLICY</button>
+                    <button>BROMAG CORPORATE</button>
                     <button>REFUND & CANCELLATION </button>
                 </div>
-                <div className="download-icons">
-                    <h3>Download the app from </h3>
-                    <img src={playstore_logo} alt="" />
-                    <img src={app_logo} alt="" />
-                </div>
+                    <div className="footer-icons">
+                        <div className="download-icons">
+                            <img src={playstore_logo} alt="" />
+                            <img src={app_logo} alt="" />
+                        </div>
+                        <div className="social-icons">
+                            <button className="icon"><FaInstagram /></button>
+                            <button className="icon"><FaWhatsapp /></button>
+                            <button className="icon"><FaYoutube /></button>
+                            <button className="icon"><FaLinkedin /></button>
+                        </div>
+                    </div>
                 <div className="float"></div>
             </div>
             
