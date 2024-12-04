@@ -9,6 +9,9 @@ import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
 //image import
 import logo from '../assets/images/footer-logo.png'
 import { Link } from "react-router-dom";
+import playstore_logo from '../assets/images/playstore.png'
+import app_logo from '../assets/images/pngegg (5).png'
+
 
 const Footer = () => {
 
@@ -20,7 +23,20 @@ const Footer = () => {
             </div>
 
             <div className="footer-content">
-
+                <div className="footer-buttons">
+                    <h3>About Us</h3>
+                    <button>Who We Are</button>
+                    <button>What We Do</button>
+                    <button>TERMS & CONDITIONS </button>
+                    <button>PRIVACY POLICY</button>
+                    <button>REFUND & CANCELLATION </button>
+                </div>
+                <div className="download-icons">
+                    <h3>Download the app from </h3>
+                    <img src={playstore_logo} alt="" />
+                    <img src={app_logo} alt="" />
+                </div>
+                <div className="float"></div>
             </div>
             
             {/* <Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
