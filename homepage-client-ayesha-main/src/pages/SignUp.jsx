@@ -23,6 +23,7 @@ function SignUp() {
         setError('')
         try {
          const response = await axios.post(`${backendUrl}/register`, {name, email, number})
+         console.log({ name, email, number });
           console.log(response.data)
           navigate('/login')
         } catch (err) {

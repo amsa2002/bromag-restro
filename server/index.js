@@ -10,14 +10,13 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(cors())
-const EmployeeModel = require('./models/EmployeeAndAdmin.js')
+const Users= require('./modals/userModal.js')
 
 //Database connection
 
 mongoose.connect(process.env.DB_URL)
     .then(() => console.log("✅ MongoDB connected successfully!"))
     .catch((err) => console.error("❌ MongoDB connection error:", err));
-
 
 const database = mongoose.connection;
 
@@ -41,7 +40,7 @@ app.post('/send-otp', async (req, res) => {
     otpStorage[number] = otp;
 
     // OTP expires in 5 minutes
-    setTimeout(() => delete otpStorage[number], 300000);
+    setTimeout(() => delete otpStorage[number], 300000)
 
     const payload = {
         number: [number],
@@ -58,7 +57,7 @@ app.post('/send-otp', async (req, res) => {
             },
         });
 
-        console.log('SMS API Response:', response.data);
+        console.log('SMS API Response:', response.data)
 
         res.status(200).json({ success: true, message: 'OTP sent successfully' });
     } catch (error) {
@@ -84,6 +83,9 @@ app.post('/register', async (req,res) => {
     // .then(employees => res.send(employees))
     // .catch(err => res.send(err))
     try{
+
+        console.log('Request Body:', req.body);
+
         const {name, email, number} = req.body
 
         if(!name || !email || !number){
@@ -101,7 +103,7 @@ app.post('/register', async (req,res) => {
         if (!phoneRegex.test(number.toString())) {
             return res.status(400).json({ message: 'Invalid phone number format. It must be 10 digits.' });
         }
-            const existingUser = await EmployeeModel.findOne({ email });
+            const existingUser = await Users.findOne({ email });
             if(existingUser){
          
                 return res.status(400).json({message: 'Email already exists'})
@@ -109,7 +111,10 @@ app.post('/register', async (req,res) => {
         
         
 
-        const newUser = await EmployeeModel.create({name, email, number})
+        const newUser = await Users.create({name, email, number})
+
+        console.log('User created successfully:', newUser);
+
         res.status(201).json({
             message: 'User registered successfully', 
             user: newUser 
