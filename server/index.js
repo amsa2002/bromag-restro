@@ -121,6 +121,7 @@ app.post('/register', async (req,res) => {
         })
     }
     catch (err) {
+        
         // Handle server error
         res.status(500).json({ 
             message: 'Server error', 
