@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const PORT = 6003
 const axios = require('axios')
+const connectDB = require('./config/db.js')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -13,18 +14,10 @@ app.use(cors())
 const Users= require('./modals/userModal.js')
 
 //Database connection
-
-mongoose.connect(process.env.DB_URL)
-    .then(() => console.log("✅ MongoDB connected successfully!"))
-    .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-const database = mongoose.connection;
-
-database.on('connected', () => console.log('✅ MongoDB connected successfully!'));
-database.on('error', (err) => console.error('❌ MongoDB connection error:', err));
-database.on('disconnected', () => console.warn('⚠️ MongoDB disconnected'));
+connectDB()
 
 
+//otp login
 const otpStorage = {};
 
 const generateOTP = () => Math.floor(1000 + Math.random() * 9000);  // 4-digit OTP

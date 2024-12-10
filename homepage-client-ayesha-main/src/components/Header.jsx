@@ -56,7 +56,7 @@ const Header = () => {
 
                 <div className='signuplogin-container'>
                     <Link to='/register'><div>signup</div></Link>
-                    <div>login</div>
+                    <Link to='/admin-login'><div>login</div></Link>
                 </div>
 
                
