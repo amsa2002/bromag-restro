@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const cors = require('cors')
 const PORT = 6003
 const axios = require('axios')
@@ -7,6 +6,7 @@ const connectDB = require('./config/db.js')
 const dotenv = require('dotenv')
 dotenv.config()
 
+const adminUserRoutes = require('./routes/adminUserRoutes.js')
 
 const app = express()
 app.use(express.json())
@@ -15,6 +15,10 @@ const Users= require('./modals/userModal.js')
 
 //Database connection
 connectDB()
+
+//routes
+
+app.use('/admin', adminUserRoutes)
 
 
 //otp login

@@ -7,6 +7,8 @@ import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import { Login } from "./pages/Login";
 import AdminLogin from "./pages/AdminLogin";
+import MailInfo from "./components/Adminlogin/MailInfo";
+import DualLogin from "./components/Adminlogin/DualLogin";
 
 
 const router = createBrowserRouter([
@@ -23,8 +25,16 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: 'admin-login',
+    path: '/admin-login',
     element: <AdminLogin />
+  },
+  {
+    path:'/mail-info',
+    element:<MailInfo/>
+  },
+  {
+    path:'/dual-login',
+    element:<DualLogin/>
   }
   
 ]);
