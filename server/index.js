@@ -5,13 +5,13 @@ const axios = require('axios')
 const connectDB = require('./config/db.js')
 const dotenv = require('dotenv')
 dotenv.config()
-
+const Users= require('./modals/userModal.js')
 const adminUserRoutes = require('./routes/adminUserRoutes.js')
+const employeeRoutes = require('./routes/employeeRoutes.js')
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-const Users= require('./modals/userModal.js')
 
 //Database connection
 connectDB()
@@ -19,6 +19,7 @@ connectDB()
 //routes
 
 app.use('/admin', adminUserRoutes)
+app.use('/employee', employeeRoutes)
 
 
 //otp login

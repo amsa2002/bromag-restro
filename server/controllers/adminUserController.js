@@ -11,15 +11,15 @@ loginAdmin = async (req, res) => {
         const user = await Admin.findOne({ email })
 
         if (!user) {
-            return res.status(404).json('No record existed')
+            return res.status(404).json({message:'No record existed'})
         }
 
         if (user.password !== password) {
-            return res.status(401).json('Password is incorrect')
+            return res.status(401).json({message:'Password is incorrect'})
         }
 
         // Generate a token valid for 1 hour
-        const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
         // Login link with token
         const loginLink = `http://localhost:5174/dual-login?token=${token}`
@@ -34,28 +34,28 @@ loginAdmin = async (req, res) => {
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.error('❌ Error sending email:', error);
-                return res.status(500).json('Error sending email');
+                console.error('❌ Error sending email:', error)
+                return res.status(500).json({ message: 'Error sending email' })
             } else {
-                console.log('✅ Email sent:', info.response);
-                res.json('Success');
+                console.log('✅ Email sent:', info.response)
+                res.json('Success')
             }
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json('Server error');
+        res.status(500).json('Server error')
     }
 }
 
 verifyAdminToken = async (req, res) => {
-    const { token } = req.query;
+    const { token } = req.query
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        res.json({ success: true, email: decoded.email });
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        res.json({ success: true, email: decoded.email })
     } catch (err) {
-        console.error('Invalid token:', err);
-        res.status(401).json({ success: false, message: 'Invalid or expired token' });
+        console.error('Invalid token:', err)
+        res.status(401).json({ success: false, message: 'Invalid or expired token' })
     }
 }
 

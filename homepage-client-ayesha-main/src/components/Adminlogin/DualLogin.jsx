@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import EmployeeAndRestaurnt from './EmployeeAndRestaurnt'
 
 const DualLogin = () => {
     const navigate = useNavigate()
@@ -28,7 +29,9 @@ const DualLogin = () => {
         }
     }, [navigate])
 
-    return <div>Welcome to the Home Page!</div>
+    return <div>
+        <EmployeeAndRestaurnt/>
+    </div>
 }
 
 export default DualLogin
