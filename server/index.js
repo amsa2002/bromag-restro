@@ -8,11 +8,13 @@ const path = require('path')
 const dotenv = require('dotenv')
 dotenv.config()
 
+const app = express()
 const Users= require('./modals/userModal.js')
 const adminUserRoutes = require('./routes/adminUserRoutes.js')
 const employeeRoutes = require('./routes/employeeRoutes.js')
 const bannerRoutes = require('./routes/bannerRoutes.js')
-const app = express()
+const aboutUsRoutes = require('./routes/aboutUsRoutes.js')
+
 
 //middelewares
 app.use(express.json())
@@ -26,6 +28,7 @@ connectDB()
 app.use('/admin', adminUserRoutes)
 app.use('/employee', employeeRoutes)
 app.use('/api/banners', bannerRoutes)
+app.use('/api/about', aboutUsRoutes)
 
 
 //otp login
