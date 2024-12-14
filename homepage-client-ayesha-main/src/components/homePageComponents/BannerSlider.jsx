@@ -18,6 +18,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import {useState, useEffect} from 'react'
+//import api
+import {getBanners} from '../../api/bannerSliderApi.js'
 
 const Wrapper = styled.div`
 width: 100vw;
@@ -100,12 +103,36 @@ ${'' /* swiper slider end */}
 
 
 const BannerSlider = () => {
+
+    const [banners, setBanners] = useState([])
+    const [activeSlide, setActiveSlide] = useState(1)
+
+    useEffect(() => {
+        const fetchBanners = async () => {
+            try {
+                const data = await getBanners();
+                console.log("Banners fetched:", banners);
+                setBanners(data);
+            } catch {
+                console.error("Failed to fetch banners");
+            }
+        };
+        fetchBanners();
+    }, [])
+
+    const handleSlideChange = (swiper) => {
+        setActiveSlide(swiper.realIndex + 1)
+    }
+
     return (
         <Wrapper>
             <div className='banner-slider'>
                 <Swiper
+                    loop={banners.length > 1}
+                    slidesPerView={1}
+                    slidesPerGroup={1}
                     grabCursor={true}
-                    loop={true}
+                    // loop={true}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
@@ -122,15 +149,22 @@ const BannerSlider = () => {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="banner-swiper"
                 >
-                    <SwiperSlide
-                        className='banner-swiper-slide'
-                        style={{ background: `url(${banner1}) rgba(0,0,0,0.5)` }}>
-                        <h1 className='slider-heading'>
-                            Welcome to <br /><span>bromag</span>
-                        </h1>
-                    </SwiperSlide>
+                    {banners.map((banner) => {
+                        return(
+                            <SwiperSlide
+                                className='banner-swiper-slide'
+                                style={{ background: `url(${banner.imageUrl}) rgba(0,0,0,0.5)` }}
+                                key={banner.id} >
+                                <h1 className='slider-heading'>
+                                    {banner.title}
+                                </h1>
+                            </SwiperSlide>
+                        )
+                    })}
+                        
+                    
 
-                    <SwiperSlide className='banner-swiper-slide'
+                    {/* <SwiperSlide className='banner-swiper-slide'
                         style={{ background: `url(${banner2}) rgba(0,0,0,0.5)` }}>
                         <h1 className='slider-heading'>
 
@@ -156,7 +190,7 @@ const BannerSlider = () => {
                         <h1 className='slider-heading'>
 
                         </h1>
-                    </SwiperSlide>
+                    </SwiperSlide> */}
 
                     <div className='slider-controller'>
                         <div className="swiper-button-prev">
@@ -167,8 +201,8 @@ const BannerSlider = () => {
                         </div>
 
                         <div className="swiper-pagination swiper-pagination-fraction swiper-pagination-horizontal">
-                            <span className="swiper-pagination-current">1</span> /
-                            <span className="swiper-pagination-total">4</span>
+                            <span className="swiper-pagination-current">{activeSlide}</span> /
+                            <span className="swiper-pagination-total">{banners.lenght}</span>
                         </div>
                     </div>
 

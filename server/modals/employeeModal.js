@@ -12,7 +12,7 @@ const employeeSchema = mongoose.Schema(
             type:String,
         },
     },
-    {timestamp:true}
+    { timestamps: true } 
 )
 
 module.exports = mongoose.model("Employee" ,employeeSchema)

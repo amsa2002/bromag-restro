@@ -2,24 +2,30 @@ const express = require('express')
 const cors = require('cors')
 const PORT = 6003
 const axios = require('axios')
+const multer = require('multer')
 const connectDB = require('./config/db.js')
+const path = require('path')
 const dotenv = require('dotenv')
 dotenv.config()
+
 const Users= require('./modals/userModal.js')
 const adminUserRoutes = require('./routes/adminUserRoutes.js')
 const employeeRoutes = require('./routes/employeeRoutes.js')
-
+const bannerRoutes = require('./routes/bannerRoutes.js')
 const app = express()
+
+//middelewares
 app.use(express.json())
 app.use(cors())
+app.use('/uploads/banners', express.static(path.join(__dirname, './uploads/banners')))
 
 //Database connection
 connectDB()
 
 //routes
-
 app.use('/admin', adminUserRoutes)
 app.use('/employee', employeeRoutes)
+app.use('/api/banners', bannerRoutes)
 
 
 //otp login
