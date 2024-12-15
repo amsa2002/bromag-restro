@@ -1,11 +1,5 @@
 //styled-component imports
 import styled from 'styled-components'
-//image imports
-import banner1 from '../../assets/images/bannerSliderImages/banner1.png'
-import banner2 from '../../assets/images/bannerSliderImages/banner2.png'
-import banner3 from '../../assets/images/bannerSliderImages/banner3.png'
-import banner4 from '../../assets/images/bannerSliderImages/banner4.png'
-import banner5 from '../../assets/images/bannerSliderImages/banner5.png'
 
 //icon imports
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -162,35 +156,6 @@ const BannerSlider = () => {
                         )
                     })}
                         
-                    
-
-                    {/* <SwiperSlide className='banner-swiper-slide'
-                        style={{ background: `url(${banner2}) rgba(0,0,0,0.5)` }}>
-                        <h1 className='slider-heading'>
-
-                        </h1>
-                    </SwiperSlide>
-
-                    <SwiperSlide className='banner-swiper-slide'
-                        style={{ background: `url(${banner3}) rgba(0,0,0,0.5)` }}>
-                        <h1 className='slider-heading'>
-
-                        </h1>
-                    </SwiperSlide>
-
-                    <SwiperSlide className='banner-swiper-slide'
-                        style={{ background: `url(${banner4}) rgba(0,0,0,0.5)` }}>
-                        <h1 className='slider-heading'>
-
-                        </h1>
-                    </SwiperSlide>
-
-                    <SwiperSlide className='banner-swiper-slide'
-                        style={{ background: `url(${banner5}) rgba(0,0,0,0.5)` }}>
-                        <h1 className='slider-heading'>
-
-                        </h1>
-                    </SwiperSlide> */}
 
                     <div className='slider-controller'>
                         <div className="swiper-button-prev">

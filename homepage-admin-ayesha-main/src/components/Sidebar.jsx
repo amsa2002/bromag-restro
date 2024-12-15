@@ -16,6 +16,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { PiSparkle } from "react-icons/pi";
 import { BiLogOut } from "react-icons/bi";
 import { useDashboardContext } from "../pages/DashboardLayout";
+import { MdOutlinePeople } from "react-icons/md";
 
 
 function getItem(label, key, icon, children, type) {
@@ -31,6 +32,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
     getItem('Dashboard', '/dashboard', <RiDashboardLine />),
     getItem('Banners', 'banners', <RiGalleryLine />),
+    getItem('About Us', 'about', <MdOutlinePeople />),
     getItem('Blogs', 'blogs', <CgWebsite />),
     getItem('Offers', 'offers', <MdOutlineDiscount />),
     getItem('Dining Features', 'dining-features', <MdOutlineRamenDining />),
